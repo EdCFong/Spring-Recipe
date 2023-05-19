@@ -18,13 +18,16 @@ public class Recipe {
     private String source;
     private String url;
     private String directions;
-    //todo add
-    //private Difficulty difficulty;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
     private Set<Ingredient> ingredients;
+
     @Lob
     private Byte[] image;
+    @Enumerated(value = EnumType.STRING)
+    // EnumType.ORDINAL Default - Store in the database the numbers equivalent EASY = 1, MODERATE = 2, HARD = 3
+    // EnumType.STRING  Store in the database the actual String value
+    private Difficulty difficulty;
 
     @OneToOne(cascade = CascadeType.ALL)
     //(cascade = CascadeType.ALL)   If we delete a Recipe, notes will be deleted as well
@@ -108,5 +111,21 @@ public class Recipe {
 
     public void setNotes(Notes notes) {
         this.notes = notes;
+    }
+
+    public Set<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(Set<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public Difficulty getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(Difficulty difficulty) {
+        this.difficulty = difficulty;
     }
 }
