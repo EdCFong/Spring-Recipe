@@ -1,6 +1,6 @@
 package com.springrecipe.springrecipe.domain;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 public class Notes {
